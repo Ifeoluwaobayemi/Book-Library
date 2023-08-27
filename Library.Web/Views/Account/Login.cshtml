@@ -1,0 +1,37 @@
+﻿@model LoginViewModel
+@{
+    var errMsg = ViewBag.Err;
+    var returnUrl = ViewBag.ReturnUrl ?? "/";
+}
+
+<div class="login-panel">
+    <h2>Login</h2>
+    <form method="post" asp-action="Login" asp-controller="Account" asp-route-ReturnUrl="@returnUrl">
+        <div class="error-message">
+            @if (!string.IsNullOrEmpty(errMsg))
+            {
+                <p>@errMsg</p>
+            }
+        </div>
+        <div class="input-control">
+            <span asp-validation-for="Email" style="color:red; font-size:10px;"></span>
+            <input asp-for="Email" placeholder="Email" />
+        </div>
+
+        <div class="input-control">
+            <span asp-validation-for="Password" style="color:red; font-size:10px;"></span>
+            <input type="password" asp-for="Password" placeholder="Password" />
+        </div>
+
+
+        <div class="input-control" id="remember-forgot">
+            <div>
+                <input asp-for="RememberMe" style="width:20px;" />Remember Me
+            </div>
+            <div class="forgot">
+                <a asp-action="ForgotPassword" asp-controller="Account">Forgot Password?</a>
+            </div>
+        </div>
+        <button class="btn-submit">Log In</button>
+    </form>
+</div>

@@ -1,0 +1,38 @@
+﻿@model RegisterViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var errMsg = ViewBag.Err;
+}
+
+
+<div class="register-panel">
+    <h4>Register</h4>
+    <form method="post" asp-action="Register" asp-controller="Account">
+        <div>
+            @if (!string.IsNullOrEmpty(errMsg))
+            {
+                @errMsg
+            }
+        </div>
+        <div class="input-control">
+            <span asp-validation-for="FirstName" style="color:red; font-size:10px;"></span>
+            <input asp-for="FirstName" placeholder="First Name" />
+        </div>
+        <div class="input-control">
+            <span asp-validation-for="LastName" style="color:red; font-size:10px;"></span>
+            <input asp-for="LastName" placeholder="Last Name" />
+        </div>
+        <div class="input-control">
+            <span asp-validation-for="Email" style="color:red; font-size:10px;"></span>
+            <input asp-for="Email" placeholder="Email" />
+        </div>
+
+        <div class="input-control">
+            <span asp-validation-for="Password" style="color:red; font-size:10px;"></span>
+            <input type="password" asp-for="Password" placeholder="Password" />
+        </div>
+        <button class="btn-submit">Register</button>
+    </form>
+</div>
